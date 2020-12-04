@@ -1,0 +1,1 @@
+Simple java application "Palindrome"
