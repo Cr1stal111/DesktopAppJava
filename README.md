@@ -1,4 +1,4 @@
-Simple java application "Palindrome"
+Simple java application "Palindrome".
 To launch the app, you need:
 ```
 1. git clone https://github.com/Cr1stal111/DesktopAppJava.git
