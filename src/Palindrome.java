@@ -1,4 +1,5 @@
-import java.util.Scanner;
+// package java_projects.desktopAppJava.src;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.text.*;
@@ -6,17 +7,58 @@ import javax.swing.text.*;
 public class Palindrome {
 
     public Palindrome() {
-        Main();
+        createGUI();
     }
 
-    private void Main() {
+    public JTextField jtf = new JTextField();
+
+    JLabel labelOutput;
+
+    public String approved = "Палиндром";
+
+    public String rejected = "Не Палиндром";
+
+    public Color default_color = new Color(0, 0, 0);
+
+    public Color green = new Color(0, 255, 0);
+
+    public Color red = new Color(255, 0, 0);
+
+    public String getResult() {
+        return labelOutput.getText();
+    }
+
+    public boolean isPalindrome = true;
+
+    public boolean isPalindromeApproved(boolean Palindrome) {
+        if (Palindrome) {
+            labelOutput.setForeground(green);
+            labelOutput.setText(approved);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isPalindromeRejected(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            if (text.charAt(i) != text.charAt(text.length() - 1 - i)) {
+                labelOutput.setForeground(red);
+                labelOutput.setText(rejected);
+                isPalindrome = false;
+                return false;
+            }
+        }
+        isPalindrome = true;
+        return true;
+    }
+    
+    private void createGUI() {
         JFrame frame = new JFrame("Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(240, 120);
         frame.setLayout(new GridLayout(2, 0));
         frame.setLocationRelativeTo(null);
-        final JTextField jtf = new JTextField();
-        JLabel labelOutput = new JLabel("Result");
+        labelOutput = new JLabel("Result");
 
         DocumentFilter df = new DocumentFilter() {
             @Override
@@ -39,27 +81,26 @@ public class Palindrome {
                 Palindrome(jtf.getText());
             }
 
-            private void Palindrome(String origString) {
-                int length = origString.length();
-                boolean isPalindrome = true;
-                for (int beginIndex = 0; beginIndex < length; beginIndex++) {
-                    if ((origString.charAt(beginIndex) != origString.charAt(length - 1 - beginIndex)) || jtf.getText().isEmpty()) {
-                        labelOutput.setForeground(new Color(255, 0, 0));
-                        labelOutput.setText("Не палиндром");
-                        isPalindrome = false;
-                        break;
+            private void Palindrome(String text) {
+                isPalindromeRejected(text);
+
+                if (text.length() % 2 == 0) {
+                    if (text.length() > 1) {
+                        isPalindromeApproved(isPalindrome);
+                    } else {
+                        labelOutput.setText("Result");
+                        labelOutput.setForeground(default_color);
                     }
-                }
-                if (isPalindrome) {
-                    labelOutput.setForeground(new Color(0, 255, 0));
-                    labelOutput.setText("Палиндром");
+                } else {
+                    labelOutput.setForeground(red);
+                    labelOutput.setText(rejected);
                 }
             }
 
         };
 
         ((AbstractDocument) (jtf.getDocument())).setDocumentFilter(df);
-
+        
         frame.add(jtf);
         frame.add(labelOutput);
         frame.setVisible(true);
