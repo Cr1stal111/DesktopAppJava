@@ -1,4 +1,4 @@
-// package java_projects.desktopAppJava.TestFunctions;
+package java_projects.desktopAppJava.TestFunctions;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -8,8 +8,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import jdk.jfr.Timestamp;
+
 public class TestFunctionPalindromeRejected {
-    
+
     Palindrome palindrome = new Palindrome();
 
     private static String string1;

@@ -51,7 +51,7 @@ public class Palindrome {
         isPalindrome = true;
         return true;
     }
-    
+
     private void createGUI() {
         JFrame frame = new JFrame("Application");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,23 +84,18 @@ public class Palindrome {
             private void Palindrome(String text) {
                 isPalindromeRejected(text);
 
-                if (text.length() % 2 == 0) {
-                    if (text.length() > 1) {
-                        isPalindromeApproved(isPalindrome);
-                    } else {
-                        labelOutput.setText("Result");
-                        labelOutput.setForeground(default_color);
-                    }
+                if (text.length() > 1) {
+                    isPalindromeApproved(isPalindrome);
                 } else {
-                    labelOutput.setForeground(red);
-                    labelOutput.setText(rejected);
+                    labelOutput.setText("Result");
+                    labelOutput.setForeground(default_color);
                 }
             }
 
         };
 
         ((AbstractDocument) (jtf.getDocument())).setDocumentFilter(df);
-        
+
         frame.add(jtf);
         frame.add(labelOutput);
         frame.setVisible(true);
